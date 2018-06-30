@@ -14,4 +14,9 @@ RUN mkdir /tmp/docker-build && cd /tmp/docker-build \
 RUN sudo apt-get install -y zip python python-pip
 RUN sudo pip install awscli awsebcli
 RUN curl https://sdk.cloud.google.com | bash
-ENV PATH $PATH:~/google-cloud-sdk/bin:
+
+ENV PATH $PATH:~/google-cloud-sdk/bin
+
+RUN cat /etc/os-release 
+RUN bash gcloud components install docker-credential-gcr && bash docker-credential-gcr configure-docker
+
