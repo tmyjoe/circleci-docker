@@ -13,10 +13,12 @@ RUN mkdir /tmp/docker-build && cd /tmp/docker-build \
 
 RUN sudo apt-get install -y zip python python-pip
 RUN sudo pip install awscli awsebcli
-RUN curl https://sdk.cloud.google.com | bash
 
-ENV PATH $PATH:~/google-cloud-sdk/bin
+USER root
 
-RUN cat /etc/os-release 
-RUN bash gcloud components install docker-credential-gcr && bash docker-credential-gcr configure-docker
-
+RUN apt-get install lsb-release
+RUN export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)" && \
+    echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
+    curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
+    apt-get update -y && apt-get install google-cloud-sdk -y
+RUN sudo apt-get install kubectl
