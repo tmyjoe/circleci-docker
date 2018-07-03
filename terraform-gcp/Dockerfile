@@ -24,6 +24,7 @@ RUN apk --no-cache add \
     gcloud config set metrics/environment github_docker_image && \
     gcloud --version
 
-RUN mkdir .terraform.d && mkdir .terraform.d/plugins
-RUN cd .terraform.d/plugins && curl -O https://github.com/akshaykarle/terraform-provider-mongodbatlas/releases/download/v0.4.5/terraform-provider-mongodbatlas_v0.4.5_linux_amd64
-RUN terraform init
+RUN echo $HOME
+
+ADD terraform-provider-mongodbatlas_v0.4.5 $HOME/.terraform.d/plugins
+ADD terraform-provider-mongodbatlas_v0.4.5 $HOME/terraform.d/plugins
