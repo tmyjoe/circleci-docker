@@ -25,6 +25,7 @@ RUN apk --no-cache add \
     gcloud --version
 
 RUN echo $HOME
-
+RUN mkdir $HOME/.terraform.d && mkdir $HOME/.terraform.d/plugins
+RUN mkdir $HOME/terraform.d && mkdir $HOME/terraform.d/plugins
 ADD terraform-provider-mongodbatlas_v0.4.5 $HOME/.terraform.d/plugins
 ADD terraform-provider-mongodbatlas_v0.4.5 $HOME/terraform.d/plugins
