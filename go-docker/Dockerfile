@@ -22,3 +22,14 @@ RUN export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)" && \
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
     apt-get update -y && apt-get install google-cloud-sdk -y
 RUN sudo apt-get install kubectl
+
+RUN apt-get -y install mysql-client
+RUN go get -u -d gocv.io/x/gocv
+RUN cd $GOPATH/src/gocv.io/x/gocv && make install
+
+# Note: Latest version of helm may be found at:
+# https://github.com/kubernetes/helm/releases
+ENV HELM_VERSION="v2.9.1"
+
+RUN wget -q http://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz -O - | tar -xzO linux-amd64/helm > /usr/local/bin/helm \
+    && chmod +x /usr/local/bin/helm

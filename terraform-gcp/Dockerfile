@@ -28,5 +28,9 @@ RUN mkdir $HOME/.terraform.d && mkdir $HOME/.terraform.d/plugins
 RUN wget https://github.com/akshaykarle/terraform-provider-mongodbatlas/releases/download/v0.6.1/terraform-provider-mongodbatlas_v0.6.1_linux_amd64 && \
     mv terraform-provider-mongodbatlas_v0.6.1_linux_amd64 $HOME/.terraform.d/plugins/terraform-provider-mongodbatlas_v0.6.1
 RUN chmod +x $HOME/.terraform.d/plugins/terraform-provider-mongodbatlas_v0.6.1
+RUN wget https://github.com/mcuadros/terraform-provider-helm/releases/download/v0.5.1/terraform-provider-helm_v0.5.1_linux_amd64.tar.gz && \
+    tar -xvf terraform-provider-helm*.tar.gz && \
+    mv terraform-provider-helm*/terraform-provider-helm $HOME/.terraform.d/plugins/
+RUN chmod +x $HOME/.terraform.d/plugins/terraform-provider-helm
 RUN file="$(ls -1 $HOME/.terraform.d/plugins)" && echo $file
 
