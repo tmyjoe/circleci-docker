@@ -33,3 +33,9 @@ ENV HELM_VERSION="v2.9.1"
 
 RUN wget -q http://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz -O - | tar -xzO linux-amd64/helm > /usr/local/bin/helm \
     && chmod +x /usr/local/bin/helm
+
+RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+RUN sudo apt-get install -y nodejs
+RUN sudo npm config set user 0 && sudo npm config set unsafe-perm true
+RUN sudo npm i -g dredd --no-optional --allow-root
+RUN sudo npm install -g aglio

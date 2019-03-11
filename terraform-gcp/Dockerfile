@@ -34,3 +34,4 @@ RUN wget https://github.com/mcuadros/terraform-provider-helm/releases/download/v
 RUN chmod +x $HOME/.terraform.d/plugins/terraform-provider-helm
 RUN file="$(ls -1 $HOME/.terraform.d/plugins)" && echo $file
 
+RUN gcloud components update && gcloud components install beta
