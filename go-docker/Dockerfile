@@ -1,6 +1,6 @@
 FROM circleci/golang
 
-LABEL maintainer="Tomoya Honjo <tomoya.honjo22@gmail.com>"
+LABEL maintainer="Tomoya Honjo <tom@tomhonjo.me>"
 
 ENV DOCKERVERSION=17.06.0-ce
 
@@ -26,13 +26,6 @@ RUN sudo apt-get install kubectl
 RUN apt-get -y install mysql-client
 RUN go get -u -d gocv.io/x/gocv
 RUN cd $GOPATH/src/gocv.io/x/gocv && make install
-
-# Note: Latest version of helm may be found at:
-# https://github.com/kubernetes/helm/releases
-ENV HELM_VERSION="v2.9.1"
-
-RUN wget -q http://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz -O - | tar -xzO linux-amd64/helm > /usr/local/bin/helm \
-    && chmod +x /usr/local/bin/helm
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 RUN sudo apt-get install -y nodejs

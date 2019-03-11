@@ -1,6 +1,6 @@
 FROM circleci/terraform:0.11.7
 
-LABEL maintainer="Tomoya Honjo <tomoya.honjo22@gmail.com>"
+LABEL maintainer="Tomoya Honjo <tom@tomhonjo.me>"
 
 USER root
 
